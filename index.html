@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <link href="./css/style.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <!-- <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet"> -->
+    <title>Les Petits Plats</title>
+    <meta name="description" content="Plateforme incroyable de recettes de cuisine">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans&family=Manrope:wght@200;300;400;500;600;700;800&display=swap');</style>
+    <link rel="shortcut icon" href="./assets/favicon.png" />
+    <script src="./data/Recipes.js"></script> <!-- import de la variable recette fournis qui est du coup une variable globale -->
+    <script src="./scripts/Controler.js"></script>
+    <script src="./scripts/Model.js"></script>
+    <script src="./scripts/Vues/Vueindex.js"></script>
+    <script src="./scripts/Utils.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  
+  <body>
+    <header class="flex-column align-items-center justify-content-center position-relative">
+      <div id="index-title-div" class="flex-row align-items-center position-absolute"><h1 class="tace white">Les Petits Plats</h1><img class="fit-content" src="./assets/logo-title.png" alt="Logo dans le titre"></div>
+      <div id="index-title-center-div" class="position-absolute flex-column align-items-center">
+        <p class="tace title yellow">CHERCHEZ PARMI PLUS DE 1500 RECETTES <br>DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</p>
+        <div class="flex-row align-items-center justify-content-center position-relative col-12">
+          <input type="text" id="search" class="col-12" placeholder="Rechercher une recette, un ingrédient, ..."/>
+          <button class="position-absolute white"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </div>
+      <img id="index-slide" src="./assets/background-index.png" alt="background de l'index"/>
+    </header>
+    <div class="flex-column align-items-center main">
+      <div id="filters" class="flex-row justify-content-between">
+        <div id="filters-list" class="flex-row align-items-center"></div>
+        <p id="recipers-count"></p>
+      </div>
+      <div id="filters-active" class="flex-row justify-content-start">
+        <div id="filter-active-main" class="flex-row"></div>
+      </div>
+      <div class="recipes_section flex-row flex-wrap">
+        
+      </div>
+    </div>
+    <script src="https://kit.fontawesome.com/2a4b12c134.js" crossorigin="anonymous"></script>
+    <script>
+      let controleur = new Controleur;
+      controleur.showRecipes();
+      controleur.showFilters();
+      </script>
+  </body>
+</html>

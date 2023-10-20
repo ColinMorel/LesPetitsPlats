@@ -1,0 +1,297 @@
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+.flex-wrap{
+    flex-wrap: wrap;
+}
+.justify-content-center{
+    justify-content: center;
+}
+.justify-content-start{
+    justify-content: start;
+}
+.justify-content-end{
+    justify-content: end;
+}
+.justify-content-between{
+    justify-content: space-between;
+}
+.align-items-center{
+    align-items: center;
+}
+.align-items-start{
+    align-items: start;
+}
+.align-items-end{
+    align-items: end;
+}
+.text-center{
+    text-align: center;
+}
+.position-absolute{
+    position: absolute;
+}
+.position-relative{
+    position: relative;
+}
+.cursor-pointer:hover{
+    cursor: pointer;
+}
+.fit-content{
+    height: fit-content;
+    width: fit-content;
+}
+html{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+}
+body{
+    max-width: 1440px;
+    background-color: white;
+}
+body *{
+    font-family: "Manrope";
+}
+h1,.title,h2{
+    font-family: "Anton";
+}
+.title-font{
+    font-family: "Anton";
+}
+.font2{
+    font-family: "Manrope";
+}
+h1{
+    font-size: 44px;
+}
+.col-12{
+    width: 100%;
+}
+.white{
+    color: white;
+}
+.grey{
+    color: #7A7A7A;
+}
+.fw-bold{
+    font-weight: bold;
+}
+.uppercase{
+    text-transform: uppercase;
+}
+.yellow{
+    color: #FFD15B;
+}
+.yellow-background{
+    background-color: #FFD15B;
+}
+/* --------- PAGE INDEX --------- */
+
+#index-title-div{
+    top: 5%;
+    left: 5%;
+}
+#index-title-div h1{
+    font-size: 30px;
+}
+#index-title-center-div{
+    width: 75%;
+    .title{
+        font-size: 44px;
+    }
+    input{
+        padding-left: 3% !important;
+        padding: 15px 5px;
+        font-size: 22px;
+        border-radius: 10px;
+        border: none;
+    }
+    button{
+        background: black;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 10px;
+        right: 5px;
+        i{
+            font-size: 26px;
+        }
+    }
+}
+
+.main{
+    background-color: #e1e1e1;
+}
+
+.recipes_section{
+    padding: 5%;
+    box-sizing: border-box;
+    width: 100%;
+}
+.recipeCard{
+    max-width: 30%;
+    margin: 2% 1.5%;
+    background-color: white;
+    border-radius: 16px;
+    h2{
+        margin-bottom: 40px;
+    }
+    .recipeCard-head{
+        p{
+            top: 2.5%;
+            right: 2.5%;
+            padding: 5px 20px;
+            background-color: #FFD15B;
+            border-radius: 15px;
+        }
+    }
+   
+    img{
+        max-width: 100%;
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 15px 15px 0 0;
+    }
+    > div:last-child{
+        padding: 5px 10px ;
+        box-sizing: border-box;
+    }
+    .card-description{
+        height: 5.5em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .titles{
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #7A7A7A;
+        font-family: "Manrope";
+        font-weight: 700;
+    }
+    *:not(h2){
+        font-size: 14px;
+        font-family: "Manrope";
+    }
+    h2{
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 27px;
+    }
+    .ingredients-list{
+        justify-content: space-between;
+
+    }
+    .ingredients{
+        width: 45%;
+        p:not(.grey){
+            margin-bottom: 0;
+        }
+        p.grey{
+            margin-top: 5px ;
+        }
+    }
+}
+#filters{
+    z-index: 1;
+    padding: 0 5%;
+    box-sizing: border-box;
+    width: 100%;
+    #recipers-count{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: "Anton";
+        font-size: 21px;
+        margin: 2% 1.5%;
+    }
+    #filters-list{
+        .filters-main{
+            background-color: white;
+            border-radius: 15px;
+            margin: 2% 1.5%;
+            width: 195px;
+            position: relative;
+            &:not(:first-child){
+                margin-left: 50px;
+            }
+            
+            &.show{
+                border-radius: 15px 15px 0 0;
+            }
+            > *:not(.filter-hiddens){
+                box-sizing: border-box;
+            }
+            .filter-head{
+                justify-content: space-between;
+                padding: 0 15px;
+            }
+            .filter-hidden-part{
+                position: absolute;
+                bottom: 0;
+                transform: translateY(100%);
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                border-radius: 0 0 15px 15px;
+                &.show{
+                    display: flex;
+                }
+                display: none;
+                .filter-search{
+                    padding: 5px;
+                    box-sizing: border-box;
+                    .search{
+                        padding:0 10px;
+                    }
+                }
+                .filters-list{
+                    max-height: 16em;
+                    overflow: scroll;
+                    & > div:last-child{
+                        border-radius: 0 0 15px 15px;
+                    }
+                    .filters-list-of{
+                        padding: 10px 15px;
+                        p{
+                            font-size: 14px;
+                            margin: 0;
+                        }
+                        &:hover{
+                            background-color: #FFD15B;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+#filters-active{
+    padding: 0 5%;
+    box-sizing: border-box;
+    width: 100%;
+    #filter-active-main{
+        margin: 2% 1.5%;
+        flex-wrap: wrap;
+    }
+    .filter-active{
+        background-color: #FFD15B;
+        border-radius: 15px;
+        margin: 2% 1.5%;
+        padding: 10px;
+        text-align: center;
+        white-space:nowrap;
+        p{
+            margin-right: 20px;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+filterRecipesWithInputSearchBar(searchTarget,recipesList) {
+        let newRecipesList = [];
+        for (let recipe of recipesList){
+            if(recipe.name.toLowerCase().indexOf(searchTarget) >= 0){
+                newRecipesList.push(recipe);
+            }
+            else if(recipe.description.toLowerCase().indexOf(searchTarget) >= 0){
+                newRecipesList.push(recipe);
+            }
+            else{
+                for(let ingredientsList of recipe.ingredients){
+                    if(ingredientsList.ingredient.toLowerCase().indexOf(searchTarget) >= 0){
+                        newRecipesList.push(recipe);
+                    }
+                }
+            }
+        }
+        return newRecipesList;
+    }
+filterRecipesWithInputSearchBar(searchTarget,recipesList);
+
+filterRecipesWithInputSearchBarFILTERJS(searchTarget,recipesList) { 
+    let newRecipesList = recipesList.filter((recipe) => {
+        if(
+            recipe.description.toLowerCase().indexOf(searchTarget) >= 0 ||
+            recipe.name.toLowerCase().indexOf(searchTarget) >= 0 ||
+            recipe.ingredients.map((ingredientsList) => ingredientsList.ingredient.toLowerCase().indexOf(searchTarget) >= 0).some((test) => test == true)
+        ){
+            return recipe;
+        }
+    })
+    return newRecipesList;
+}
+filterRecipesWithInputSearchBarFILTERJS(searchTarget,recipesList)
