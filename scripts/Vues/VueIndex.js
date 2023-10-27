@@ -331,7 +331,7 @@ class VueIndex {
     doFilterSearchBar(recipeList){
         let searchTarget = this.search.value.toLowerCase();
         if (searchTarget.length >= 3) {
-            recipeList = this.filterRecipesWithInputSearchBar(searchTarget, recipeList); // Accès au controleur d'ici car appelé dans le index.html 
+            recipeList = this.filterRecipesWithInputSearchBarFILTERJS(searchTarget, recipeList); // Accès au controleur d'ici car appelé dans le index.html 
         }
         return recipeList;
     }
@@ -341,24 +341,24 @@ class VueIndex {
         this.refreshIndexFitlers(recipesListFiltered);
     }
 
-    filterRecipesWithInputSearchBar(searchTarget,recipesList) { // Recherche à partir de 3 caractères, dans les titre/ingredients/descriptions des recettes
-        let newRecipesList = [];
-        for (let recipe of recipesList){
-            // console.log(recipe)
-            if(recipe.name.toLowerCase().indexOf(searchTarget) >= 0){
-                newRecipesList.push(recipe);
+    filterRecipesWithInputSearchBarFILTERJS(searchTarget,recipesList) { 
+        let newRecipesList = recipesList.filter((recipe) => {
+            /* On fait une seule boucle filter, où on parcourt l'entiereté de mes recettes;
+            si on a une correspondance entre la valeur de ma recherche et :
+                - la description
+                - le nom
+                - l'un des ingrédients
+                d'une des recettes, alors on return cette recette */
+            if(
+                recipe.description.toLowerCase().indexOf(searchTarget) >= 0 ||
+                recipe.name.toLowerCase().indexOf(searchTarget) >= 0 ||
+                recipe.ingredients.map((ingredientsList) => ingredientsList.ingredient.toLowerCase().indexOf(searchTarget) >= 0).some((test) => test == true)
+                /* On parcourt chacun des ingredients (en lowercase) de la liste d'ingrédient des recettes ;
+                si au moins l'un des ingredients d'une des recettes corresponds à ma recherche, alors on test validé */
+            ){
+                return recipe;
             }
-            else if(recipe.description.toLowerCase().indexOf(searchTarget) >= 0){
-                newRecipesList.push(recipe);
-            }
-            else{
-                for(let ingredientsList of recipe.ingredients){
-                    if(ingredientsList.ingredient.toLowerCase().indexOf(searchTarget) >= 0){
-                        newRecipesList.push(recipe);
-                    }
-                }
-            }
-        }
+        })
         return newRecipesList;
     }
 }
