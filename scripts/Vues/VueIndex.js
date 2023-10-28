@@ -12,11 +12,17 @@ class VueIndex {
 
         this.search = document.getElementById("search");
         search.addEventListener('keyup', () => {
-            this.refreshAllPagesAfterResearch();
+            this.refreshAllElementsAfterResearch();
         })
         document.addEventListener("DOMContentLoaded", function() {
             search.value = ""; /*VIDER LE CHAMP DE RECHERCHE LORSQU'ON RAFRAICHIT LA PAGE*/
         });
+    }
+
+    /*ACTUALISER TOUT LES FILTRES ET INPUT AU CHARGEMENT OU APRES AVOIR RECHERCHE UN ELEMENT*/
+    refreshAllElementsAfterResearch(){
+        let recipesListFiltered = this.doFilterRecipes();
+        this.refreshIndexFilters(recipesListFiltered);
     }
 
     showRecipesfromAList(recipesList) {
@@ -91,7 +97,7 @@ class VueIndex {
         this.filtersInputHandle();
     }
     
-    refreshIndexFitlers(recipesList) {
+    refreshIndexFilters(recipesList) {
         let ingredientsList = Utils.getIngredientsList(recipesList);
         this.displayIndexFiltersList(ingredientsList, "Ingredients");
         
@@ -197,7 +203,7 @@ class VueIndex {
         }
     }
 
-    filtersInputHandle() { /*RE RENDRE CLIQUABLE LES NOUVEAUX FILTRES DES LISTES DEROULANTES*/
+    filtersInputHandle() { /*RENDRE CLIQUABLE LES FILTRES (DE BASE OU NOUVEAUX APRES FILTRE) DES LISTES DEROULANTES*/
         let filters_list_of = document.querySelectorAll(".filters-list-of");
 
         for (let i = 0; i < filters_list_of.length; i++) {
@@ -210,22 +216,21 @@ class VueIndex {
                     if (!this.ingredientsActifsFilter.includes(filterClicked)) {
                         this.ingredientsActifsFilter.push(e.target.innerText)
                         this.filtersInputDisplay(filterClicked, "Ingredients");
-                        this.refreshAllPagesAfterResearch();
-
+                        this.refreshAllElementsAfterResearch();
                     }
                 }
                 else if (directParent.classList.contains("Appareils")) {
                     if (!this.appareilsActifsFilter.includes(filterClicked)) {
                         this.appareilsActifsFilter.push(e.target.innerText)
                         this.filtersInputDisplay(filterClicked, "Appareils");
-                        this.refreshAllPagesAfterResearch();
+                        this.refreshAllElementsAfterResearch();
                     }
                 }
                 else {
                     if (!this.ustensilesActifsFilter.includes(filterClicked)) {
                         this.ustensilesActifsFilter.push(e.target.innerText)
                         this.filtersInputDisplay(filterClicked, "Ustentiles");
-                        this.refreshAllPagesAfterResearch();
+                        this.refreshAllElementsAfterResearch();
                     }
                 }
             })
@@ -258,7 +263,7 @@ class VueIndex {
                 Utils.removeFromArray(this.ustensilesActifsFilter, filterToRemove)
             }
             filterCloseParent.remove();
-            this.refreshAllPagesAfterResearch();
+            this.refreshAllElementsAfterResearch();
         })
     }
 
@@ -269,7 +274,7 @@ class VueIndex {
         recipesListFiltered = this.doFilterAppareils(recipesListFiltered);
         recipesListFiltered = this.doFilterSearchBar(recipesListFiltered);
 
-        /* REFILTRER LA LISTE DES INGREDIENTS/APPAREILS/USTENSILES DEROULANTES EN FONCTION DEMA LISTE FILTRE ET NON TOTALE*/
+        /* REFILTRER LA LISTE DES INGREDIENTS/APPAREILS/USTENSILES DEROULANTES EN FONCTION DE MA LISTE FILTRE ET NON TOTALE*/
 
         this.showRecipesfromAList(recipesListFiltered);
         return recipesListFiltered
@@ -334,11 +339,6 @@ class VueIndex {
             recipeList = this.filterRecipesWithInputSearchBar(searchTarget, recipeList); // Accès au controleur d'ici car appelé dans le index.html 
         }
         return recipeList;
-    }
-
-    refreshAllPagesAfterResearch(){
-        let recipesListFiltered = this.doFilterRecipes();
-        this.refreshIndexFitlers(recipesListFiltered);
     }
 
     filterRecipesWithInputSearchBar(searchTarget,recipesList) { // Recherche à partir de 3 caractères, dans les titre/ingredients/descriptions des recettes

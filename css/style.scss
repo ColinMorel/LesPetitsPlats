@@ -199,6 +199,9 @@ h1{
         }
     }
 }
+#search:focus ~ button{
+    background-color: #FFD15B;
+}
 #filters{
     z-index: 1;
     padding: 0 5%;
@@ -280,6 +283,7 @@ h1{
     box-sizing: border-box;
     width: 100%;
     #filter-active-main{
+        width: 100%;
         margin: 2% 1.5%;
         flex-wrap: wrap;
     }

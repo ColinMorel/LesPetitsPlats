@@ -22,7 +22,6 @@ class Utils{
         let ustensileValid = false;
         for(let ustensile of recipe.ustensils){
             if(ustensile.toLowerCase().indexOf(ustentileToFind) >= 0){
-                console.log(recipe)
                 ustensileValid = true;
                 break;
             }
@@ -31,7 +30,7 @@ class Utils{
     }
 
      /* -------- RECUPERER LISTE DES APPAREILS -------- */    
-     static getAppliancesList(recipes) {
+    static getAppliancesList(recipes) {
         let applianceList = [];
         for (let i = 0 ; i < recipes.length ; i++) {
             // recipes[i].appliance = recipes[i].appliance.toLowerCase();

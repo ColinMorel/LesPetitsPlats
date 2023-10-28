@@ -284,6 +284,10 @@ h1 {
   margin-top: 5px;
 }
 
+#search:focus ~ button {
+  background-color: #FFD15B;
+}
+
 #filters {
   z-index: 1;
   padding: 0 5%;
@@ -398,6 +402,7 @@ h1 {
 }
 
 #filters-active #filter-active-main {
+  width: 100%;
   margin: 2% 1.5%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
